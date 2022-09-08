@@ -12,11 +12,11 @@ const Home = ({ users }) => {
 
     for (let user of users) {
       if (
-        user.name.toLowerCase() === name2 &&
-        user.friend.toLowerCase() === name1
+        user.name.toLowerCase() === name2.toLocaleLowerCase() &&
+        user.friend.toLowerCase() === name1.toLocaleLowerCase()
       ) {
         found.push(user.name);
-        console.log(found);
+
         setPath(found);
         return;
       }
@@ -28,20 +28,20 @@ const Home = ({ users }) => {
 
     if (found.includes(currUserObj.friend)) {
       found.push("not found");
-      console.log(found);
+
       setPath(found);
       return;
     }
 
     if (currUserObj.friend.toLowerCase() === name2.toLowerCase()) {
       found.push(currUserObj.friend);
-      console.log(found);
+
       setPath(found);
       return;
     } else {
       found.push(currUserObj.friend);
       clickHandler(currUserObj.friend, name2, found);
-      console.log(found);
+
       setPath(found);
     }
   };
