@@ -1,3 +1,4 @@
+import { click } from "@testing-library/user-event/dist/click";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,13 +8,13 @@ const Home = ({ users }) => {
   const [path, setPath] = useState([]);
   const navigate = useNavigate();
 
-  const clickHandler = (n1, n2, found) => {
+  const clickHandler = (n1, n2, found, reverse) => {
     //Check if name2 and name 1 are friends
-
+    console.log(path);
     for (let user of users) {
       if (
-        user.name.toLowerCase() === name2.toLocaleLowerCase() &&
-        user.friend.toLowerCase() === name1.toLocaleLowerCase()
+        user.name.toLowerCase() === n2.toLocaleLowerCase() &&
+        user.friend.toLowerCase() === n1.toLocaleLowerCase()
       ) {
         found.push(user.name);
 
@@ -27,10 +28,14 @@ const Home = ({ users }) => {
     );
 
     if (found.includes(currUserObj.friend)) {
-      found.push("not found");
+      if (!reverse) {
+        clickHandler(name2, name1, [name2], true);
+      } else {
+        found.push("not found");
 
-      setPath(found);
-      return;
+        setPath(found);
+        return;
+      }
     }
 
     if (currUserObj.friend.toLowerCase() === name2.toLowerCase()) {
@@ -83,7 +88,7 @@ const Home = ({ users }) => {
         </label>
         <button
           className="button"
-          onClick={() => clickHandler(name1, name2, [name1])}
+          onClick={() => clickHandler(name1, name2, [name1], false)}
         >
           Check
         </button>
