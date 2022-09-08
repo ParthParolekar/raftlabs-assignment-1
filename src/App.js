@@ -8,7 +8,7 @@ function App() {
   const [users, setUsers] = useState([
     { name: "Spiderman", friend: "Ironman" },
     { name: "Ironman", friend: "Thor" },
-    { name: "Hulk", friend: "Thor" },
+    { name: "Hulk", friend: "Captain America" },
     { name: "Captain America", friend: "Ironman" },
     { name: "Thor", friend: "Hulk" },
   ]);
