@@ -5,7 +5,7 @@ const AddUser = ({ users, setUsers }) => {
   const navigate = useNavigate();
   const [error, setError] = useState([false, ""]);
   const [newName, setNewName] = useState("");
-  const [friend, setFriend] = useState("");
+  const [friend, setFriend] = useState("Spiderman");
 
   const addClickHandler = () => {
     setError([false, ""]);
@@ -44,7 +44,7 @@ const AddUser = ({ users, setUsers }) => {
         </label>
         <label>
           Friend
-          <select onChange={(e) => setFriend(e.target.value)}>
+          <select value={friend} onChange={(e) => setFriend(e.target.value)}>
             {users.map((user) => (
               <option value={user.name} key={user.name}>
                 {user.name}
