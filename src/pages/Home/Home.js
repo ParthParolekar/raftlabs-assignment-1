@@ -27,10 +27,15 @@ const Home = ({ users }) => {
     );
 
     if (found.includes(currUserObj.friend)) {
-      found.push("not found");
+      if (found.includes("not found")) {
+        found.push("not found");
 
-      setPath(found);
-      return;
+        setPath(found);
+        return;
+      } else {
+        found.push("not found");
+        clickHandler(name2, name1, found);
+      }
     }
 
     if (currUserObj.friend.toLowerCase() === name2.toLowerCase()) {
