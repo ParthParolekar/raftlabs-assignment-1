@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({ users }) => {
   const [name1, setName1] = useState("");
   const [name2, setName2] = useState("");
   const [path, setPath] = useState([]);
+  const navigate = useNavigate();
 
   const clickHandler = (n1, n2, found) => {
     //Check if name2 and name 1 are friends
+
     for (let user of users) {
       if (
         user.name.toLowerCase() === name2 &&
@@ -18,6 +21,7 @@ const Home = ({ users }) => {
         return;
       }
     }
+
     let currUserObj = users.find(
       (user) => user.name.toLowerCase() === n1.toLowerCase()
     );
@@ -28,6 +32,7 @@ const Home = ({ users }) => {
       setPath(found);
       return;
     }
+
     if (currUserObj.friend.toLowerCase() === name2.toLowerCase()) {
       found.push(currUserObj.friend);
       console.log(found);
@@ -40,11 +45,16 @@ const Home = ({ users }) => {
       setPath(found);
     }
   };
+
   return (
     <>
-      <h1>Social Network</h1>
-      <h4>See how connected you are with other people</h4>
-      <div className={"container"}>
+      <h2>See how connected you are with other people</h2>
+
+      <button className="button" onClick={() => navigate("/adduser")}>
+        Add User
+      </button>
+
+      <div className="container">
         <label>
           Name 1
           <select onChange={(e) => setName1(e.target.value)}>
@@ -72,16 +82,20 @@ const Home = ({ users }) => {
           </select>
         </label>
         <button
-          className={"button"}
+          className="button"
           onClick={() => clickHandler(name1, name2, [name1])}
         >
           Check
         </button>
         {path[path.length - 1] !== "not found" && path.length !== 0 && (
-          <h1>The relationship</h1>
+          <h1>The relationship is as follows</h1>
         )}
-        {path[path.length - 1] !== "not found" && <h3>{path.join(" > ")}</h3>}
-        {path[path.length - 1] === "not found" && <h3>Not found</h3>}
+        {path[path.length - 1] !== "not found" && (
+          <h3 className="result">{path.join(" > ")}</h3>
+        )}
+        {path[path.length - 1] === "not found" && (
+          <h3>No relationship found</h3>
+        )}
       </div>
     </>
   );

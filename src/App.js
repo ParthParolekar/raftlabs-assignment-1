@@ -14,6 +14,7 @@ function App() {
   ]);
   return (
     <div className="App">
+      <nav>Social Network</nav>
       <Routes>
         <Route path="/" element={<Home users={users} setUsers={setUsers} />} />
         <Route

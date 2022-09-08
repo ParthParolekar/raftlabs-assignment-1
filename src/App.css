@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+nav {
+  background-color: #4100bb;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
 .container {
   background-color: #212121;
   box-shadow: 6px 6px 12px #131313, -6px -6px 12px #292929;
@@ -11,7 +17,7 @@
   align-items: center;
   justify-content: space-between;
   width: 30vw;
-  margin: 100px auto;
+  margin: 50px auto;
   padding: 10px;
   height: 50vh;
   min-width: max-content;
@@ -40,14 +46,21 @@
   border-color: #4100bb;
 }
 
+.result {
+  background-color: #4100bb;
+  padding: 0 10px;
+}
+
 label {
   display: flex;
   flex-direction: column;
 }
 
 select,
-select option {
+select option,
+input {
   background-color: #212121;
   color: white;
   padding: 10px;
+  border: 1px solid #4100bb;
 }
